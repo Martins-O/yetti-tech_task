@@ -53,3 +53,7 @@ class MyTestCase(TestCase):
         response = self.client.get(reverse('logout'))
         self.assertEqual(response.status_code, 302)
         self.assertFalse('_auth_user_id' in self.client.session)
+
+    def test_unauthenticated_user_access(self):
+        response = self.client.get(reverse('hello_world'))
+        self.assertEqual(response.status_code, 302)
